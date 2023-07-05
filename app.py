@@ -49,4 +49,4 @@ resulting_image = get_image(result)
 
 print(resulting_image)
 
-#st.image(resulting_image)
+st.write(resulting_image)
