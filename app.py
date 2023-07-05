@@ -13,7 +13,7 @@ def get_image(query_text):
 
     serpapi = SerpAPIWrapper(params=params)
 
-    search_result = serpapi.run(query_text, num_images=1)
+    search_result = serpapi.run(query_text)
 
     #image_url = search_result["images"][0]["url"]
     image_url = search_result
