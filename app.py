@@ -2,8 +2,8 @@ import streamlit as st
 from langchain.llms import OpenAI
 from langchain import PromptTemplate
 
-st.write("""
-# Andi's Streamlit-Langchain-Food-Bot
+st.header("""
+:blue[Andi's Streamlit-Langchain-Food-Bot]
 """)
 
 my_country = st.text_input("Enter country")
@@ -24,6 +24,6 @@ final_prompt = prompt.format(country=my_country)
 
 result = llm(final_prompt)
 
-st.write("Here comes a typical meal of the country you entered:")
+st.write(":blue[Here comes a typical meal of the country you entered:]")
 
 st.write(result)
