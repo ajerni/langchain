@@ -38,7 +38,7 @@ st.write(":blue[Here comes a typical meal of the country you entered:]")
 st.write(result)
 
 tools = load_tools(["serpapi"], llm=llm)
-get_image_agent = initialize_agent(tools, llm, agent=AgentType.SELF_ASK_WITH_SEARCH, verbose=True)
+get_image_agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
 bild = get_image_agent.run(f"find one image that shows the meal described as {result} and return the URL to that single image.")
 
 st.write(bild)
