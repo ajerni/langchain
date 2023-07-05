@@ -9,10 +9,9 @@ os.environ["SERPAPI_API_KEY"] = st.secrets["serpapi_api_key"]
 def get_image(query_text):
     params = {
         "engine": "google_images",
-
     }
 
-    serpapi = SerpAPIWrapper(params)
+    serpapi = SerpAPIWrapper(params=params)
 
     search_result = serpapi.run(query_text, num_images=1)
 
