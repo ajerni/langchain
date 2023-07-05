@@ -39,6 +39,6 @@ st.write(result)
 
 tools = load_tools(["serpapi"], llm=llm)
 get_image_agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
-bild = get_image_agent.run(f"find one image that shows the meal described as {result}. Reply only with the exact URL to that single image.")
+bild = get_image_agent.run(f"give me a www link to an image that looks like {result}. Reply with the hyperlink only.")
 
 st.write(bild)
