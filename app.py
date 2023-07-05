@@ -12,7 +12,8 @@ def get_image(query_text):
 
     search_result = serpapi.run(query_text, num_images=1)
 
-    image_url = search_result["images"][0]["url"]
+    #image_url = search_result["images"][0]["url"]
+    image_url = search_result
 
     return image_url
 
