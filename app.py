@@ -2,23 +2,12 @@ import streamlit as st
 from langchain.llms import OpenAI
 from langchain import PromptTemplate
 from langchain.utilities import SerpAPIWrapper
+from langchain.agents import load_tools, initialize_agent, AgentType
 
 import os
 os.environ["SERPAPI_API_KEY"] = st.secrets["serpapi_api_key"]
 
-def get_image(query_text):
-    params = {
-        "engine": "google_images",
-    }
-
-    serpapi = SerpAPIWrapper(params=params)
-
-    search_result = serpapi.run(query_text)
-
-    #image_url = search_result["images"][0]["url"]
-    image_url = search_result
-
-    return image_url
+llm = OpenAI(model_name="gpt-3.5-turbo", openai_api_key=st.secrets["openai_api_key"])
 
 st.header(
     """
@@ -28,7 +17,7 @@ st.header(
 
 my_country = st.text_input("Enter country")
 
-llm = OpenAI(model_name="gpt-3.5-turbo", openai_api_key=st.secrets["openai_api_key"])
+
 
 template = """
 let me know a typical meal from {country}.
@@ -48,8 +37,8 @@ st.write(":blue[Here comes a typical meal of the country you entered:]")
 
 st.write(result)
 
-resulting_image = get_image(result)
+tools = load_tools(["serpapi"], llm=llm)
+get_image_agent = initialize_agent(tools, llm, agent=AgentType.SELF_ASK_WITH_SEARCH, verbose=True)
+bild = get_image_agent.run(f"find one image that shows the meal described as {result} and return the URL to that single image.")
 
-print(resulting_image)
-
-st.write(resulting_image)
+st.write(bild)
